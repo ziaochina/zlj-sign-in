@@ -28,7 +28,6 @@
     "pkg": "mk pkg"
   },
   "dependencies": {
-    "md5": "*",
-    "mk-command": "*"
+    "md5": "*"
   }
 }
