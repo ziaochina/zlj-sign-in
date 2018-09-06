@@ -177,7 +177,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _mkMetaEngine=__web
 /* 7 */
 /***/ (function(module) {
 
-module.exports = {"isMKApp":true,"name":"zlj-sign-in","description":"zlj-sign-in","version":"1.0.0","license":"MIT","author":"","keywords":["mk","monkey king","react","redux","mk-js","mk-command","zlj-sign-in"],"repository":{"type":"git","url":"https://github.com/whatsmk/zlj-sign-in.git"},"bugs":{"url":"https://github.com/whatsmk/zlj-sign-in/issues"},"homepage":"https://github.com/whatsmk/zlj-sign-in#readme","scripts":{"start":"mk start","build":"mk build","pkg":"mk pkg"},"dependencies":{"md5":"*","mk-command":"*"}};
+module.exports = {"isMKApp":true,"name":"zlj-sign-in","description":"zlj-sign-in","version":"1.0.0","license":"MIT","author":"","keywords":["mk","monkey king","react","redux","mk-js","mk-command","zlj-sign-in"],"repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"mk start","build":"mk build","pkg":"mk pkg"},"dependencies":{"md5":"*","mk-command":"*"}};
 
 /***/ }),
 /* 8 */
