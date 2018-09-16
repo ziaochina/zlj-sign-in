@@ -1,6 +1,3 @@
-
-
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,10 +11,8 @@
 </head>
 <body>
     <div id='app' style="width:100%;height: 100%"></div>
-    <script src="require.js"></script>
     <script>
-        __require_base_url__ = '';
-        window.mkReady = function (mk) {
+        window.main = function (mk) {
             mk.utils.fetch.config({
                 mock: true,
                 token: '',
@@ -29,28 +24,18 @@
                         return response.value;
                     }
                     else {
-                        mk.component.Toast.error(response.error.message);
+                        let msg = mk.getComponent('Message')
+                        msg.error(response.error.message);
+                        //mk.component.Toast.error(response.error.message);
                         throw { url:url, response:response };
                     }
                 },
             })
-            var options = {};
-
-            
-                mk.init({
-                    requireFn: require,
-                    appsMap:{
-                        
-                        "zlj-sign-in":{
-                            asset: "zlj-sign-in.js",
-                            options: {}
-                        }
-                    }
-                });
-                mk.render('zlj-sign-in', 'app');
-            
+            mk.load(['zlj-antd','zlj-component']).then(()=>{
+                mk.render('zlj-sign-in','app')
+            })
         }
     </script>
-    <script src="mk.js"></script>
+     <script src="require.js" data-main='mk.js'></script>
 </body>
 </html>

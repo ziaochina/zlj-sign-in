@@ -1,6 +1,5 @@
 import webapi from './webapi'
 
-
 var _options = {
 	webapi,
 	webapiMap: {
@@ -21,7 +20,6 @@ var _options = {
 		appName: 'zlj-forgot-password',
 		appParams: {}
 	}
-	
 }
 
 

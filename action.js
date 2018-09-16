@@ -1,35 +1,36 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { action as MetaAction, AppLoader } from 'mk-meta-engine'
+import { actionMixin } from 'mk-meta-engine'
 import config from './config'
+import { fromJS } from 'immutable'
 import md5 from 'md5'
 /*
 localStorage使用：login.user,login.password,login.remember,login.passwordLength
 */
-class action {
+@actionMixin('Moment')
+export default class action {
     constructor(option) {
-        this.metaAction = option.metaAction
+        this.base = option.base
         this.config = config.current
         this.webapi = this.config.webapi
     }
 
-    onInit = ({ component, injections }) => {
+    onInit = ({ component }) => {
         this.component = component
-        this.injections = injections
 
         var form = {}
 
-        if(localStorage['login.password']){
+        if (localStorage['login.password']) {
             form.password = Array(parseInt(localStorage['login.passwordLength']) + 1).join('*')
         }
-        if(localStorage['login.user']){
+        if (localStorage['login.user']) {
             form.user = localStorage['login.user']
         }
-        if(localStorage['login.remember']){
+        if (localStorage['login.remember']) {
             form.remember = localStorage['login.remember']
         }
-      
-        injections.reduce('init', form)
+
+        this.base.sf('data.form', fromJS(form))
     }
 
     getLogo = () => this.config.logo
@@ -37,7 +38,7 @@ class action {
     getConfig = () => this.config
 
     login = async () => {
-        const form = this.metaAction.gf('data.form').toJS()
+        const form = this.base.gf('data.form').toJS()
 
         const ok = await this.check([{
             path: 'data.form.user', value: form.user
@@ -49,15 +50,15 @@ class action {
 
         var pwd = form.password
 
-        if(localStorage['login.password']){
-            if( pwd ==  Array(parseInt(localStorage['login.passwordLength']) + 1).join('*')){
+        if (localStorage['login.password']) {
+            if (pwd == Array(parseInt(localStorage['login.passwordLength']) + 1).join('*')) {
                 pwd = localStorage['login.password']
             }
-            else{
+            else {
                 pwd = md5('mk-' + pwd)
             }
         }
-        else{
+        else {
             pwd = md5('mk-' + pwd)
         }
 
@@ -67,16 +68,15 @@ class action {
             passwordStrength: '1'
         })
 
-        this.metaAction.context.set('currentUser', response)
+        this.base.context.set('currentUser', response)
 
-       
-        if(form.remember){
+        if (form.remember) {
             localStorage['login.user'] = form.user
             localStorage['login.password'] = pwd
             localStorage['login.passwordLength'] = form.password.length
             localStorage['login.remember'] = true
         }
-        else{
+        else {
             localStorage['login.user'] = ''
             localStorage['login.password'] = ''
             localStorage['login.passwordLength'] = ''
@@ -130,7 +130,7 @@ class action {
                 hasError = false
         })
 
-        this.metaAction.sfs(json)
+        this.base.sfs(json)
 
         return hasError
     }
@@ -184,14 +184,14 @@ class action {
         }
     }
 
-}
+    loadOption = async() => {
+        return [{
+            id: 1,
+            name: 'aa'
+        },{
+            id:2,
+            name: 'bb'
+        }]
+    }
 
-export default function creator(option) {
-    const metaAction = new MetaAction(option),
-        o = new action({ ...option, metaAction }),
-        ret = { ...metaAction, ...o }
-
-    metaAction.config({ metaHandlers: ret })
-
-    return ret
 }
