@@ -1,159 +1,76 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { actionMixin } from 'mk-meta-engine'
-import config from './config'
-import { fromJS } from 'immutable'
+
+import { actionMixin, fetch, getComponent } from 'maka'
 import md5 from 'md5'
-/*
-localStorage使用：login.user,login.password,login.remember,login.passwordLength
-*/
-@actionMixin('Moment')
+
+@actionMixin('base')
 export default class action {
     constructor(option) {
-        this.base = option.base
-        this.config = config.current
-        this.webapi = this.config.webapi
+        Object.assign(this, option.mixins)
     }
 
-    onInit = ({ component }) => {
-        this.component = component
-
-        var form = {}
-
-        if (localStorage['login.password']) {
-            form.password = Array(parseInt(localStorage['login.passwordLength']) + 1).join('*')
+    onInit = () => {
+        var form = {
+            password: localStorage['login.password'] && Array(parseInt(localStorage['login.passwordLength']) + 1).join('*'),
+            user: localStorage['login.user'],
+            remember: localStorage['login.remember']
         }
-        if (localStorage['login.user']) {
-            form.user = localStorage['login.user']
-        }
-        if (localStorage['login.remember']) {
-            form.remember = localStorage['login.remember']
-        }
-
-        this.base.sf('data.form', fromJS(form))
+        this.base.setState({ 'data.form': form })
     }
-
-    getLogo = () => this.config.logo
-
-    getConfig = () => this.config
 
     login = async () => {
-        const form = this.base.gf('data.form').toJS()
+        const form = this.base.getState('data.form')
 
-        const ok = await this.check([{
-            path: 'data.form.user', value: form.user
-        }, {
-            path: 'data.form.password', value: form.password
-        }])
-
-        if (!ok) return
-
+        if (!this.checkUser(form.user)) return
+        if (!this.checkPassword(form.password)) return
         var pwd = form.password
+        pwd = (localStorage['login.password'] && pwd == Array(parseInt(localStorage['login.passwordLength']) + 1).join('*'))
+            ? localStorage['login.password']
+            : md5(pwd)
 
-        if (localStorage['login.password']) {
-            if (pwd == Array(parseInt(localStorage['login.passwordLength']) + 1).join('*')) {
-                pwd = localStorage['login.password']
-            }
-            else {
-                pwd = md5('mk-' + pwd)
-            }
-        }
-        else {
-            pwd = md5('mk-' + pwd)
-        }
-
-        const response = await this.webapi.login({
-            account: form.user,
-            password: pwd,
-            passwordStrength: '1'
-        })
+        const response = await fetch.post('/v1/user/login', { account: form.user, password: pwd })
+        
+        const message = getComponent('antd.Message')
+        message && message.success('登录成功')
 
         this.base.context.set('currentUser', response)
 
-        if (form.remember) {
-            localStorage['login.user'] = form.user
-            localStorage['login.password'] = pwd
-            localStorage['login.passwordLength'] = form.password.length
-            localStorage['login.remember'] = true
-        }
-        else {
-            localStorage['login.user'] = ''
-            localStorage['login.password'] = ''
-            localStorage['login.passwordLength'] = ''
-            localStorage['login.remember'] = ''
-        }
+        localStorage['login.user'] = form.remember ? form.user : ''
+        localStorage['login.password'] = form.remember ? pwd : ''
+        localStorage['login.passwordLength'] = form.remember ? form.password.length : ''
+        localStorage['login.remember'] = form.remember ? true : ''
 
-        if (this.component.props.onRedirect && this.config.goAfterSignIn) {
-            this.component.props.onRedirect(this.config.goAfterSignIn)
-        }
+        this.redirect('@zlj/portal')
     }
 
-    goRegister = () => {
-        if (this.component.props.onRedirect && this.config.goSignUp) {
-            this.component.props.onRedirect(this.config.goSignUp)
-        }
-    }
-
-    goForgot = () => {
-        if (this.component.props.onRedirect && this.config.goForgot) {
-            this.component.props.onRedirect(this.config.goForgot)
-        }
+    redirect = (appName) => {
+        this.base.component.props.onRedirect && this.base.component.props.onRedirect(appName)
     }
 
     fieldChange = async (fieldPath, value) => {
-        await this.check([{ path: fieldPath, value }])
+        this.base.setState({ [fieldPath]: value })
+        if (fieldPath == 'data.form.user') {
+            this.checkUser(value)
+        }
+        if (fieldPath == 'data.form.password') {
+            this.checkPassword(value)
+        }
     }
 
-    check = async (fieldPathAndValues) => {
-        if (!fieldPathAndValues)
-            return
-
-        var checkResults = []
-
-        for (var o of fieldPathAndValues) {
-            let r = { ...o }
-            if (o.path == 'data.form.user') {
-                Object.assign(r, await this.checkUser(o.value))
-            }
-            else if (o.path == 'data.form.password') {
-                Object.assign(r, await this.checkPassword(o.value))
-            }
-            checkResults.push(r)
-        }
-
-        var json = {}
-        var hasError = true
-        checkResults.forEach(o => {
-            json[o.path] = o.value
-            json[o.errorPath] = o.message
-            if (o.message)
-                hasError = false
+    checkUser = (user) => {
+        var message = (!user && '请录入手机号') || (!/^1[3|4|5|8][0-9]\d{8}$/.test(user) && '请录入有效的手机号')
+        this.base.setState({
+            'data.other.error.user': message
         })
 
-        this.base.sfs(json)
-
-        return hasError
+        return !message
     }
 
-
-    checkUser = async (user) => {
-        var message
-
-        if (!user)
-            message = '请录入手机号'
-        else if (!/^1[3|4|5|8][0-9]\d{8}$/.test(user))
-            message = '请录入有效的手机号'
-
-        return { errorPath: 'data.other.error.user', message: '' }
-    }
-
-    checkPassword = async (password) => {
-        var message
-
-        if (!password)
-            message = '请录入密码'
-
-        return { errorPath: 'data.other.error.password', message }
+    checkPassword = (password) => {
+        var message = !password && '请录入密码'
+        this.base.setState({
+            'data.other.error.password': message
+        })
+        return !message
     }
 
     keyup = (e) => {
@@ -183,15 +100,4 @@ export default class action {
             win.onKeyUp = undefined
         }
     }
-
-    loadOption = async() => {
-        return [{
-            id: 1,
-            name: 'aa'
-        },{
-            id:2,
-            name: 'bb'
-        }]
-    }
-
 }

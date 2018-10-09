@@ -1,9 +1,4 @@
-/**
- * mock.js 提供应用截获ajax请求，为脱离后台测试使用
- * 模拟查询更改内存中mockData,并返回数据
- */
-
-import { fetch } from 'mk-utils'
+import { fetch } from 'maka'
 
 const mockData = fetch.mockData
 
@@ -12,8 +7,8 @@ function initMockData() {
         mockData.users = [{
             id: 1,
             account: 13334445556,
-            password: '1741958402b43d691014f5f53cecddbf',
-            name: 'mk'
+            password: 'c4ca4238a0b923820dcc509a6f75849b',
+            name: 'zlj'
         }]
     }
 }
@@ -27,7 +22,7 @@ fetch.mock('/v1/user/login', (option) => {
         return {
             result: true,
             //token模拟简单处理，正式不应该有密码等数据
-            token: `${user.id},${user.account},${user.password},${user.name?user.name:''},${user.sex?user.sex:''},${user.birthday?user.birthday:''}`, 
+            token: `${user.id},${user.account},${user.password},${user.name ? user.name : ''}`,
             value: option
         }
     }

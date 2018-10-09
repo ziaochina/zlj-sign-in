@@ -1,20 +1,17 @@
 import pkgJson from './package.json'
-import data from './data'
+import view from './view'
 import action from './action'
-import config from './config'
+import state from './state'
 import './mock'
 import './img/logo.png'
 import './style.less'
 
-__webpack_public_path__ = window[`__pub_${pkgJson.name}__`];
+const name = pkgJson.name
 
-export default {
-    name: pkgJson.name,
-    version: pkgJson.version,
-    description: pkgJson.description,
-    config: config,
-    meta: data.meta,
-    state: data.state,
+export {
+    name,
+    view,
+    state,
     action
 }
 

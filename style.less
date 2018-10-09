@@ -1,6 +1,8 @@
 .zlj-sign-in{
 	width: 100%;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
 	.ant-btn{
 		font-size: 14px;
 	}
@@ -29,9 +31,6 @@
     	overflow: hidden;
 
     	&-logo {
-    		//width: 90px;
-    		//height: 90px;
-			//margin-right: 10px;
 			width: 58px;
             height: 58px;
             margin-right: 10px;
@@ -39,10 +38,12 @@
     	}
 	}
 	&-content{
+		display: flex;
 		flex:1;
 		flex-direction: row;
 		
 		&-form{
+			flex:1;
 			display: flex;
     		flex-direction: column;
 			justify-content: center;
@@ -111,6 +112,7 @@
 		}
 	}
 	&-footer{
+		display: flex;
     	height: 50px;
     	flex: 0 0 58px;
     	justify-content: center;

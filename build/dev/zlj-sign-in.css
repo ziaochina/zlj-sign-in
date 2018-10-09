@@ -1,6 +1,8 @@
 .zlj-sign-in {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .zlj-sign-in .ant-btn {
   font-size: 14px;
@@ -35,16 +37,18 @@
   margin-left: 10px;
 }
 .zlj-sign-in-content {
+  display: flex;
   flex: 1;
   flex-direction: row;
 }
 .zlj-sign-in-content-form {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.zlj-sign-in-content-form .mk-form-item {
+.zlj-sign-in-content-form .ant-form-item {
   margin-bottom: 30px;
 }
 .zlj-sign-in-content-form .ant-form-item-control-wrapper,
@@ -55,7 +59,7 @@
 .zlj-sign-in-content-form .ant-input-wrapper {
   height: 50px;
 }
-.zlj-sign-in-content-form .mk-input {
+.zlj-sign-in-content-form .ant-input {
   height: 100%;
 }
 .zlj-sign-in-content-form .ant-form-explain {
@@ -86,7 +90,7 @@
 .zlj-sign-in-content-form-login {
   margin-bottom: 5px !important;
 }
-.zlj-sign-in-content-form-login .mk-btn {
+.zlj-sign-in-content-form-login .ant-btn {
   width: 100%;
   height: 100%;
 }
@@ -95,6 +99,7 @@
   color: #ccc;
 }
 .zlj-sign-in-footer {
+  display: flex;
   height: 50px;
   flex: 0 0 58px;
   justify-content: center;
@@ -102,5 +107,3 @@
   background: #fafafa;
 }
 
-
-/*# sourceMappingURL=zlj-sign-in.css.map*/

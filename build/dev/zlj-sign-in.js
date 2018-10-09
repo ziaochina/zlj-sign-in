@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("MK.metaEngine"), require("MK.utils"), require("react"), require("react-dom"), require("immutable"));
+		module.exports = factory(require("maka"));
 	else if(typeof define === 'function' && define.amd)
-		define(["MK.metaEngine", "MK.utils", "react", "react-dom", "immutable"], factory);
+		define(["maka"], factory);
 	else if(typeof exports === 'object')
-		exports["MKApp_zlj_sign_in"] = factory(require("MK")["metaEngine"], require("MK.utils"), require("react"), require("react-dom"), require("immutable"));
+		exports["MakaApp-zlj-sign-in"] = factory(require("maka"));
 	else
-		root["MKApp_zlj_sign_in"] = factory(root["MK.metaEngine"], root["MK"]["utils"], root["React"], root["ReactDOM"], root["Immutable"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__, __WEBPACK_EXTERNAL_MODULE__23__) {
+		root["MakaApp-zlj-sign-in"] = factory(root["maka"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,15 +91,29 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _webapi=__webpack_require__(8);var _webapi2=_interopRequireDefault(_webapi);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var _options={webapi:_webapi2.default,webapiMap:{'login':'/v1/user/login'},logo:'logo.png',websiteName:'系统',copyright:'copyright © 2018 zlj',goAfterSignIn:{appName:'zlj-portal',appParams:{}},goSignUp:{appName:'zlj-sign-up',appParams:{}},goForgot:{appName:'zlj-forgot-password',appParams:{}}};function config(options){if(options){Object.assign(_options,options);}}config.current=_options;exports.default=config;module.exports=exports['default'];
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 
 /***/ }),
 /* 1 */
@@ -111,14 +125,50 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});exports.getMeta=getMeta;exports.getInitState=getInitState;function getMeta(){return{name:'root',component:'Layout',className:'zlj-sign-in',autoComplete:'off',children:[{name:'header',className:'zlj-sign-in-header',component:'Layout',children:[{name:'logo',component:'::img',className:'zlj-sign-in-header-logo',src:'{{$getConfig().logo}}'},'{{$getConfig().websiteName}}']},{name:'content',className:'zlj-sign-in-content',component:'Layout',children:[{name:'contentLeft',className:'zlj-sign-in-content-left',component:'Layout'},{name:'form',component:'Form',className:'zlj-sign-in-content-form',children:[{name:'item1',component:'Form.Item',className:'zlj-sign-in-content-form-title',style:{fontSize:30},children:'登录'},{name:'item2',component:'Form.Item',validateStatus:"{{data.other.error.user?'error':'success'}}",help:'{{data.other.error.user}}',className:'zlj-sign-in-content-form-user',children:[{name:'user',component:'Input',placeholder:'请录入手机号',onChange:"{{(e)=>$fieldChange('data.form.user', e.target.value)}}",value:'{{data.form.user}}',prefix:{name:'userIcon',component:'Icon',type:'user'}}]},{name:'item3',component:'Form.Item',validateStatus:"{{data.other.error.password?'error':'success'}}",help:'{{data.other.error.password}}',className:'zlj-sign-in-content-form-password',children:[{name:'password',component:'Input',placeholder:'请录入密码',autoComplete:'new-password',type:'password',onChange:'{{(e)=>$fieldChange(\'data.form.password\', e.target.value)}}',value:'{{data.form.password}}',prefix:{name:'passwordIcon',component:'Icon',type:'lock'}}]},{name:'item4',component:'Form.Item',className:'zlj-sign-in-content-form-forget',children:[{name:'remember',component:'Checkbox',children:'记住我',checked:'{{data.form.remember}}',onChange:'{{(e)=>$sf(\'data.form.remember\',e.target.checked)}}'},{name:'forgot',component:'::a',style:{float:'right'},onClick:'{{$goForgot}}',children:'忘记密码'}]},{name:'item5',component:'Form.Item',className:'zlj-sign-in-content-form-login',children:[{name:'loginBtn',component:'Button',type:'primary',children:'登录',onClick:'{{$login}}'}]},{name:'item6',component:'Form.Item',className:'zlj-sign-in-content-form-register',children:[{name:'register',component:'::a',style:{float:'right'},onClick:'{{$goRegister}}',children:'没有账户，立即注册'}]}]},{name:'contentRight',className:'zlj-sign-in-content-right',component:'Layout'}]},{name:'footer',className:'zlj-sign-in-footer',component:'Layout',children:'{{$getConfig().copyright}}'}]};}function getInitState(){return{data:{form:{user:'',password:''},other:{error:{}}}};}
+module.exports = __webpack_require__(9);
+
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+module.exports = _asyncToGenerator;
 
 /***/ }),
 /* 4 */
@@ -161,76 +211,197 @@ module.exports = charenc;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module) {
 
-module.exports = __webpack_require__(6);
-
+module.exports = {"isMKApp":true,"name":"@zlj/sign-in","description":"sign in","version":"1.0.0","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"@zlj/antd":"https://hub.makajs.org/@zlj/antd/-/@latest","md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _mkMetaEngine=__webpack_require__(1);var pkgJson=__webpack_require__(7);__webpack_require__.p=window['__pub_'+pkgJson.name+'__'];var data=__webpack_require__(2);var config=__webpack_require__(0);__webpack_require__(9);__webpack_require__(10);__webpack_require__(11);exports.default={name:pkgJson.name,version:pkgJson.version,description:pkgJson.description,meta:data.getMeta(),components:[],config:config,load:function load(cb){cb(_mkMetaEngine.defaultComponent,__webpack_require__(13),__webpack_require__(22));}};module.exports=exports['default'];
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
 
 /***/ }),
 /* 7 */
-/***/ (function(module) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {"isMKApp":true,"name":"zlj-sign-in","description":"zlj-sign-in","version":"1.0.0","license":"MIT","author":"","keywords":["mk","monkey king","react","redux","mk-js","mk-command","zlj-sign-in"],"repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"mk start","build":"mk build","pkg":"mk pkg"},"dependencies":{"md5":"*","mk-command":"*"}};
+(function(){
+  var crypt = __webpack_require__(11),
+      utf8 = __webpack_require__(4).utf8,
+      isBuffer = __webpack_require__(12),
+      bin = __webpack_require__(4).bin,
+
+  // The core
+  md5 = function (message, options) {
+    // Convert to byte array
+    if (message.constructor == String)
+      if (options && options.encoding === 'binary')
+        message = bin.stringToBytes(message);
+      else
+        message = utf8.stringToBytes(message);
+    else if (isBuffer(message))
+      message = Array.prototype.slice.call(message, 0);
+    else if (!Array.isArray(message))
+      message = message.toString();
+    // else, assume byte array already
+
+    var m = crypt.bytesToWords(message),
+        l = message.length * 8,
+        a =  1732584193,
+        b = -271733879,
+        c = -1732584194,
+        d =  271733878;
+
+    // Swap endian
+    for (var i = 0; i < m.length; i++) {
+      m[i] = ((m[i] <<  8) | (m[i] >>> 24)) & 0x00FF00FF |
+             ((m[i] << 24) | (m[i] >>>  8)) & 0xFF00FF00;
+    }
+
+    // Padding
+    m[l >>> 5] |= 0x80 << (l % 32);
+    m[(((l + 64) >>> 9) << 4) + 14] = l;
+
+    // Method shortcuts
+    var FF = md5._ff,
+        GG = md5._gg,
+        HH = md5._hh,
+        II = md5._ii;
+
+    for (var i = 0; i < m.length; i += 16) {
+
+      var aa = a,
+          bb = b,
+          cc = c,
+          dd = d;
+
+      a = FF(a, b, c, d, m[i+ 0],  7, -680876936);
+      d = FF(d, a, b, c, m[i+ 1], 12, -389564586);
+      c = FF(c, d, a, b, m[i+ 2], 17,  606105819);
+      b = FF(b, c, d, a, m[i+ 3], 22, -1044525330);
+      a = FF(a, b, c, d, m[i+ 4],  7, -176418897);
+      d = FF(d, a, b, c, m[i+ 5], 12,  1200080426);
+      c = FF(c, d, a, b, m[i+ 6], 17, -1473231341);
+      b = FF(b, c, d, a, m[i+ 7], 22, -45705983);
+      a = FF(a, b, c, d, m[i+ 8],  7,  1770035416);
+      d = FF(d, a, b, c, m[i+ 9], 12, -1958414417);
+      c = FF(c, d, a, b, m[i+10], 17, -42063);
+      b = FF(b, c, d, a, m[i+11], 22, -1990404162);
+      a = FF(a, b, c, d, m[i+12],  7,  1804603682);
+      d = FF(d, a, b, c, m[i+13], 12, -40341101);
+      c = FF(c, d, a, b, m[i+14], 17, -1502002290);
+      b = FF(b, c, d, a, m[i+15], 22,  1236535329);
+
+      a = GG(a, b, c, d, m[i+ 1],  5, -165796510);
+      d = GG(d, a, b, c, m[i+ 6],  9, -1069501632);
+      c = GG(c, d, a, b, m[i+11], 14,  643717713);
+      b = GG(b, c, d, a, m[i+ 0], 20, -373897302);
+      a = GG(a, b, c, d, m[i+ 5],  5, -701558691);
+      d = GG(d, a, b, c, m[i+10],  9,  38016083);
+      c = GG(c, d, a, b, m[i+15], 14, -660478335);
+      b = GG(b, c, d, a, m[i+ 4], 20, -405537848);
+      a = GG(a, b, c, d, m[i+ 9],  5,  568446438);
+      d = GG(d, a, b, c, m[i+14],  9, -1019803690);
+      c = GG(c, d, a, b, m[i+ 3], 14, -187363961);
+      b = GG(b, c, d, a, m[i+ 8], 20,  1163531501);
+      a = GG(a, b, c, d, m[i+13],  5, -1444681467);
+      d = GG(d, a, b, c, m[i+ 2],  9, -51403784);
+      c = GG(c, d, a, b, m[i+ 7], 14,  1735328473);
+      b = GG(b, c, d, a, m[i+12], 20, -1926607734);
+
+      a = HH(a, b, c, d, m[i+ 5],  4, -378558);
+      d = HH(d, a, b, c, m[i+ 8], 11, -2022574463);
+      c = HH(c, d, a, b, m[i+11], 16,  1839030562);
+      b = HH(b, c, d, a, m[i+14], 23, -35309556);
+      a = HH(a, b, c, d, m[i+ 1],  4, -1530992060);
+      d = HH(d, a, b, c, m[i+ 4], 11,  1272893353);
+      c = HH(c, d, a, b, m[i+ 7], 16, -155497632);
+      b = HH(b, c, d, a, m[i+10], 23, -1094730640);
+      a = HH(a, b, c, d, m[i+13],  4,  681279174);
+      d = HH(d, a, b, c, m[i+ 0], 11, -358537222);
+      c = HH(c, d, a, b, m[i+ 3], 16, -722521979);
+      b = HH(b, c, d, a, m[i+ 6], 23,  76029189);
+      a = HH(a, b, c, d, m[i+ 9],  4, -640364487);
+      d = HH(d, a, b, c, m[i+12], 11, -421815835);
+      c = HH(c, d, a, b, m[i+15], 16,  530742520);
+      b = HH(b, c, d, a, m[i+ 2], 23, -995338651);
+
+      a = II(a, b, c, d, m[i+ 0],  6, -198630844);
+      d = II(d, a, b, c, m[i+ 7], 10,  1126891415);
+      c = II(c, d, a, b, m[i+14], 15, -1416354905);
+      b = II(b, c, d, a, m[i+ 5], 21, -57434055);
+      a = II(a, b, c, d, m[i+12],  6,  1700485571);
+      d = II(d, a, b, c, m[i+ 3], 10, -1894986606);
+      c = II(c, d, a, b, m[i+10], 15, -1051523);
+      b = II(b, c, d, a, m[i+ 1], 21, -2054922799);
+      a = II(a, b, c, d, m[i+ 8],  6,  1873313359);
+      d = II(d, a, b, c, m[i+15], 10, -30611744);
+      c = II(c, d, a, b, m[i+ 6], 15, -1560198380);
+      b = II(b, c, d, a, m[i+13], 21,  1309151649);
+      a = II(a, b, c, d, m[i+ 4],  6, -145523070);
+      d = II(d, a, b, c, m[i+11], 10, -1120210379);
+      c = II(c, d, a, b, m[i+ 2], 15,  718787259);
+      b = II(b, c, d, a, m[i+ 9], 21, -343485551);
+
+      a = (a + aa) >>> 0;
+      b = (b + bb) >>> 0;
+      c = (c + cc) >>> 0;
+      d = (d + dd) >>> 0;
+    }
+
+    return crypt.endian([a, b, c, d]);
+  };
+
+  // Auxiliary functions
+  md5._ff  = function (a, b, c, d, x, s, t) {
+    var n = a + (b & c | ~b & d) + (x >>> 0) + t;
+    return ((n << s) | (n >>> (32 - s))) + b;
+  };
+  md5._gg  = function (a, b, c, d, x, s, t) {
+    var n = a + (b & d | c & ~d) + (x >>> 0) + t;
+    return ((n << s) | (n >>> (32 - s))) + b;
+  };
+  md5._hh  = function (a, b, c, d, x, s, t) {
+    var n = a + (b ^ c ^ d) + (x >>> 0) + t;
+    return ((n << s) | (n >>> (32 - s))) + b;
+  };
+  md5._ii  = function (a, b, c, d, x, s, t) {
+    var n = a + (c ^ (b | ~d)) + (x >>> 0) + t;
+    return ((n << s) | (n >>> (32 - s))) + b;
+  };
+
+  // Package private blocksize
+  md5._blocksize = 16;
+  md5._digestsize = 16;
+
+  module.exports = function (message, options) {
+    if (message === undefined || message === null)
+      throw new Error('Illegal argument ' + message);
+
+    var digestbytes = crypt.wordsToBytes(md5(message, options));
+    return options && options.asBytes ? digestbytes :
+        options && options.asString ? bin.bytesToString(digestbytes) :
+        crypt.bytesToHex(digestbytes);
+  };
+
+})();
+
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _mkUtils=__webpack_require__(3);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}/**
- * webapi.js 封装app所需的所有web请求
- * 供app测试使用，app加入网站后webpai应该由网站通过config,提供给每个app
- */var api=function api(key){return _config2.default.current.webapiMap[key];};exports.default={login:function login(option){return _mkUtils.fetch.post(api('login'),option);}};module.exports=exports['default'];
+module.exports = __webpack_require__(16);
+
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var _mkUtils=__webpack_require__(3);var mockData=_mkUtils.fetch.mockData;/**
- * mock.js 提供应用截获ajax请求，为脱离后台测试使用
- * 模拟查询更改内存中mockData,并返回数据
- */function initMockData(){if(!mockData.users){mockData.users=[{id:1,account:13334445556,password:'1741958402b43d691014f5f53cecddbf',name:'mk'}];}}_mkUtils.fetch.mock('/v1/user/login',function(option){initMockData();var user=mockData.users.find(function(o){return o.account==option.account&&o.password==option.password;});if(user){return{result:true,//token模拟简单处理，正式不应该有密码等数据
-token:user.id+','+user.account+','+user.password+','+(user.name?user.name:'')+','+(user.sex?user.sex:'')+','+(user.birthday?user.birthday:''),value:option};}else{return{result:false,error:{message:'请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）'}};}});
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "logo.png";
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-/* 12 */,
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _regenerator=__webpack_require__(14);var _regenerator2=_interopRequireDefault(_regenerator);var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};exports.default=creator;var _react=__webpack_require__(17);var _react2=_interopRequireDefault(_react);var _reactDom=__webpack_require__(18);var _reactDom2=_interopRequireDefault(_reactDom);var _mkMetaEngine=__webpack_require__(1);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _md=__webpack_require__(19);var _md2=_interopRequireDefault(_md);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _asyncToGenerator(fn){return function(){var gen=fn.apply(this,arguments);return new Promise(function(resolve,reject){function step(key,arg){try{var info=gen[key](arg);var value=info.value;}catch(error){reject(error);return;}if(info.done){resolve(value);}else{return Promise.resolve(value).then(function(value){step("next",value);},function(err){step("throw",err);});}}return step("next");});};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}/*
-localStorage使用：login.user,login.password,login.remember,login.passwordLength
-*/var action=function action(option){var _this=this;_classCallCheck(this,action);this.onInit=function(_ref){var component=_ref.component,injections=_ref.injections;_this.component=component;_this.injections=injections;var form={};if(localStorage['login.password']){form.password=Array(parseInt(localStorage['login.passwordLength'])+1).join('*');}if(localStorage['login.user']){form.user=localStorage['login.user'];}if(localStorage['login.remember']){form.remember=localStorage['login.remember'];}injections.reduce('init',form);};this.getLogo=function(){return _this.config.logo;};this.getConfig=function(){return _this.config;};this.login=_asyncToGenerator(/*#__PURE__*/_regenerator2.default.mark(function _callee(){var form,ok,pwd,response;return _regenerator2.default.wrap(function _callee$(_context){while(1){switch(_context.prev=_context.next){case 0:form=_this.metaAction.gf('data.form').toJS();_context.next=3;return _this.check([{path:'data.form.user',value:form.user},{path:'data.form.password',value:form.password}]);case 3:ok=_context.sent;if(ok){_context.next=6;break;}return _context.abrupt('return');case 6:pwd=form.password;if(localStorage['login.password']){if(pwd==Array(parseInt(localStorage['login.passwordLength'])+1).join('*')){pwd=localStorage['login.password'];}else{pwd=(0,_md2.default)('mk-'+pwd);}}else{pwd=(0,_md2.default)('mk-'+pwd);}_context.next=10;return _this.webapi.login({account:form.user,password:pwd,passwordStrength:'1'});case 10:response=_context.sent;_this.metaAction.context.set('currentUser',response);if(form.remember){localStorage['login.user']=form.user;localStorage['login.password']=pwd;localStorage['login.passwordLength']=form.password.length;localStorage['login.remember']=true;}else{localStorage['login.user']='';localStorage['login.password']='';localStorage['login.passwordLength']='';localStorage['login.remember']='';}if(_this.component.props.onRedirect&&_this.config.goAfterSignIn){_this.component.props.onRedirect(_this.config.goAfterSignIn);}case 14:case'end':return _context.stop();}}},_callee,_this);}));this.goRegister=function(){if(_this.component.props.onRedirect&&_this.config.goSignUp){_this.component.props.onRedirect(_this.config.goSignUp);}};this.goForgot=function(){if(_this.component.props.onRedirect&&_this.config.goForgot){_this.component.props.onRedirect(_this.config.goForgot);}};this.fieldChange=function(){var _ref3=_asyncToGenerator(/*#__PURE__*/_regenerator2.default.mark(function _callee2(fieldPath,value){return _regenerator2.default.wrap(function _callee2$(_context2){while(1){switch(_context2.prev=_context2.next){case 0:_context2.next=2;return _this.check([{path:fieldPath,value:value}]);case 2:case'end':return _context2.stop();}}},_callee2,_this);}));return function(_x,_x2){return _ref3.apply(this,arguments);};}();this.check=function(){var _ref4=_asyncToGenerator(/*#__PURE__*/_regenerator2.default.mark(function _callee3(fieldPathAndValues){var checkResults,_iteratorNormalCompletion,_didIteratorError,_iteratorError,_iterator,_step,o,r,json,hasError;return _regenerator2.default.wrap(function _callee3$(_context3){while(1){switch(_context3.prev=_context3.next){case 0:if(fieldPathAndValues){_context3.next=2;break;}return _context3.abrupt('return');case 2:checkResults=[];_iteratorNormalCompletion=true;_didIteratorError=false;_iteratorError=undefined;_context3.prev=6;_iterator=fieldPathAndValues[Symbol.iterator]();case 8:if(_iteratorNormalCompletion=(_step=_iterator.next()).done){_context3.next=31;break;}o=_step.value;r=_extends({},o);if(!(o.path=='data.form.user')){_context3.next=20;break;}_context3.t0=Object;_context3.t1=r;_context3.next=16;return _this.checkUser(o.value);case 16:_context3.t2=_context3.sent;_context3.t0.assign.call(_context3.t0,_context3.t1,_context3.t2);_context3.next=27;break;case 20:if(!(o.path=='data.form.password')){_context3.next=27;break;}_context3.t3=Object;_context3.t4=r;_context3.next=25;return _this.checkPassword(o.value);case 25:_context3.t5=_context3.sent;_context3.t3.assign.call(_context3.t3,_context3.t4,_context3.t5);case 27:checkResults.push(r);case 28:_iteratorNormalCompletion=true;_context3.next=8;break;case 31:_context3.next=37;break;case 33:_context3.prev=33;_context3.t6=_context3['catch'](6);_didIteratorError=true;_iteratorError=_context3.t6;case 37:_context3.prev=37;_context3.prev=38;if(!_iteratorNormalCompletion&&_iterator.return){_iterator.return();}case 40:_context3.prev=40;if(!_didIteratorError){_context3.next=43;break;}throw _iteratorError;case 43:return _context3.finish(40);case 44:return _context3.finish(37);case 45:json={};hasError=true;checkResults.forEach(function(o){json[o.path]=o.value;json[o.errorPath]=o.message;if(o.message)hasError=false;});_this.metaAction.sfs(json);return _context3.abrupt('return',hasError);case 50:case'end':return _context3.stop();}}},_callee3,_this,[[6,33,37,45],[38,,40,44]]);}));return function(_x3){return _ref4.apply(this,arguments);};}();this.checkUser=function(){var _ref5=_asyncToGenerator(/*#__PURE__*/_regenerator2.default.mark(function _callee4(user){var message;return _regenerator2.default.wrap(function _callee4$(_context4){while(1){switch(_context4.prev=_context4.next){case 0:if(!user)message='请录入手机号';else if(!/^1[3|4|5|8][0-9]\d{8}$/.test(user))message='请录入有效的手机号';return _context4.abrupt('return',{errorPath:'data.other.error.user',message:''});case 2:case'end':return _context4.stop();}}},_callee4,_this);}));return function(_x4){return _ref5.apply(this,arguments);};}();this.checkPassword=function(){var _ref6=_asyncToGenerator(/*#__PURE__*/_regenerator2.default.mark(function _callee5(password){var message;return _regenerator2.default.wrap(function _callee5$(_context5){while(1){switch(_context5.prev=_context5.next){case 0:if(!password)message='请录入密码';return _context5.abrupt('return',{errorPath:'data.other.error.password',message:message});case 2:case'end':return _context5.stop();}}},_callee5,_this);}));return function(_x5){return _ref6.apply(this,arguments);};}();this.keyup=function(e){if(e.type==='keyup'&&(e.key==='Enter'||e.keyCode==13)&&e.target.tagName!='BUTTON'){_this.login();}};this.componentDidMount=function(){var win=window;if(win.addEventListener){win.addEventListener('keyup',_this.keyup,false);}else if(win.attachEvent){win.attachEvent('onkeyup',_this.keyup);}else{win.onKeyUp=_this.keyup;}};this.componentWillUnmount=function(){var win=window;if(win.removeEventListener){win.removeEventListener('keyup',_this.keyup,false);}else if(win.detachEvent){win.detachEvent('onkeyup',_this.keyup);}else{win.onKeyUp=undefined;}};this.metaAction=option.metaAction;this.config=_config2.default.current;this.webapi=this.config.webapi;};function creator(option){var metaAction=new _mkMetaEngine.action(option),o=new action(_extends({},option,{metaAction:metaAction})),ret=_extends({},metaAction,o);metaAction.config({metaHandlers:ret});return ret;}module.exports=exports['default'];
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(15);
-
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -242,7 +413,9 @@ module.exports = __webpack_require__(15);
 
 // This method of obtaining a reference to the global object needs to be
 // kept identical to the way it is obtained in runtime.js
-var g = (function() { return this })() || Function("return this")();
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
 
 // Use `getOwnPropertyNames` because not all browsers support calling
 // `hasOwnProperty` on the global `self` object in a worker. See #183.
@@ -255,7 +428,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(10);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -271,7 +444,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 16 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -444,22 +617,14 @@ if (hadRuntime) {
         return Promise.resolve(value).then(function(unwrapped) {
           // When a yielded Promise is resolved, its final value becomes
           // the .value of the Promise<{value,done}> result for the
-          // current iteration. If the Promise is rejected, however, the
-          // result for this iteration will be rejected with the same
-          // reason. Note that rejections of yielded Promises are not
-          // thrown back into the generator function, as is the case
-          // when an awaited Promise is rejected. This difference in
-          // behavior between yield and await is important, because it
-          // allows the consumer to decide what to do with the yielded
-          // rejection (swallow it and continue, manually .throw it back
-          // into the generator, abandon iteration, whatever). With
-          // await, by contrast, there is no opportunity to examine the
-          // rejection reason outside the generator function, so the
-          // only option is to throw it from the await expression, and
-          // let the generator function handle the exception.
+          // current iteration.
           result.value = unwrapped;
           resolve(result);
-        }, reject);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
       }
     }
 
@@ -999,190 +1164,14 @@ if (hadRuntime) {
   // In sloppy mode, unbound `this` refers to the global object, fallback to
   // Function constructor if we're in global strict mode. That is sadly a form
   // of indirect eval which violates Content Security Policy.
-  (function() { return this })() || Function("return this")()
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
 );
 
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-(function(){
-  var crypt = __webpack_require__(20),
-      utf8 = __webpack_require__(4).utf8,
-      isBuffer = __webpack_require__(21),
-      bin = __webpack_require__(4).bin,
-
-  // The core
-  md5 = function (message, options) {
-    // Convert to byte array
-    if (message.constructor == String)
-      if (options && options.encoding === 'binary')
-        message = bin.stringToBytes(message);
-      else
-        message = utf8.stringToBytes(message);
-    else if (isBuffer(message))
-      message = Array.prototype.slice.call(message, 0);
-    else if (!Array.isArray(message))
-      message = message.toString();
-    // else, assume byte array already
-
-    var m = crypt.bytesToWords(message),
-        l = message.length * 8,
-        a =  1732584193,
-        b = -271733879,
-        c = -1732584194,
-        d =  271733878;
-
-    // Swap endian
-    for (var i = 0; i < m.length; i++) {
-      m[i] = ((m[i] <<  8) | (m[i] >>> 24)) & 0x00FF00FF |
-             ((m[i] << 24) | (m[i] >>>  8)) & 0xFF00FF00;
-    }
-
-    // Padding
-    m[l >>> 5] |= 0x80 << (l % 32);
-    m[(((l + 64) >>> 9) << 4) + 14] = l;
-
-    // Method shortcuts
-    var FF = md5._ff,
-        GG = md5._gg,
-        HH = md5._hh,
-        II = md5._ii;
-
-    for (var i = 0; i < m.length; i += 16) {
-
-      var aa = a,
-          bb = b,
-          cc = c,
-          dd = d;
-
-      a = FF(a, b, c, d, m[i+ 0],  7, -680876936);
-      d = FF(d, a, b, c, m[i+ 1], 12, -389564586);
-      c = FF(c, d, a, b, m[i+ 2], 17,  606105819);
-      b = FF(b, c, d, a, m[i+ 3], 22, -1044525330);
-      a = FF(a, b, c, d, m[i+ 4],  7, -176418897);
-      d = FF(d, a, b, c, m[i+ 5], 12,  1200080426);
-      c = FF(c, d, a, b, m[i+ 6], 17, -1473231341);
-      b = FF(b, c, d, a, m[i+ 7], 22, -45705983);
-      a = FF(a, b, c, d, m[i+ 8],  7,  1770035416);
-      d = FF(d, a, b, c, m[i+ 9], 12, -1958414417);
-      c = FF(c, d, a, b, m[i+10], 17, -42063);
-      b = FF(b, c, d, a, m[i+11], 22, -1990404162);
-      a = FF(a, b, c, d, m[i+12],  7,  1804603682);
-      d = FF(d, a, b, c, m[i+13], 12, -40341101);
-      c = FF(c, d, a, b, m[i+14], 17, -1502002290);
-      b = FF(b, c, d, a, m[i+15], 22,  1236535329);
-
-      a = GG(a, b, c, d, m[i+ 1],  5, -165796510);
-      d = GG(d, a, b, c, m[i+ 6],  9, -1069501632);
-      c = GG(c, d, a, b, m[i+11], 14,  643717713);
-      b = GG(b, c, d, a, m[i+ 0], 20, -373897302);
-      a = GG(a, b, c, d, m[i+ 5],  5, -701558691);
-      d = GG(d, a, b, c, m[i+10],  9,  38016083);
-      c = GG(c, d, a, b, m[i+15], 14, -660478335);
-      b = GG(b, c, d, a, m[i+ 4], 20, -405537848);
-      a = GG(a, b, c, d, m[i+ 9],  5,  568446438);
-      d = GG(d, a, b, c, m[i+14],  9, -1019803690);
-      c = GG(c, d, a, b, m[i+ 3], 14, -187363961);
-      b = GG(b, c, d, a, m[i+ 8], 20,  1163531501);
-      a = GG(a, b, c, d, m[i+13],  5, -1444681467);
-      d = GG(d, a, b, c, m[i+ 2],  9, -51403784);
-      c = GG(c, d, a, b, m[i+ 7], 14,  1735328473);
-      b = GG(b, c, d, a, m[i+12], 20, -1926607734);
-
-      a = HH(a, b, c, d, m[i+ 5],  4, -378558);
-      d = HH(d, a, b, c, m[i+ 8], 11, -2022574463);
-      c = HH(c, d, a, b, m[i+11], 16,  1839030562);
-      b = HH(b, c, d, a, m[i+14], 23, -35309556);
-      a = HH(a, b, c, d, m[i+ 1],  4, -1530992060);
-      d = HH(d, a, b, c, m[i+ 4], 11,  1272893353);
-      c = HH(c, d, a, b, m[i+ 7], 16, -155497632);
-      b = HH(b, c, d, a, m[i+10], 23, -1094730640);
-      a = HH(a, b, c, d, m[i+13],  4,  681279174);
-      d = HH(d, a, b, c, m[i+ 0], 11, -358537222);
-      c = HH(c, d, a, b, m[i+ 3], 16, -722521979);
-      b = HH(b, c, d, a, m[i+ 6], 23,  76029189);
-      a = HH(a, b, c, d, m[i+ 9],  4, -640364487);
-      d = HH(d, a, b, c, m[i+12], 11, -421815835);
-      c = HH(c, d, a, b, m[i+15], 16,  530742520);
-      b = HH(b, c, d, a, m[i+ 2], 23, -995338651);
-
-      a = II(a, b, c, d, m[i+ 0],  6, -198630844);
-      d = II(d, a, b, c, m[i+ 7], 10,  1126891415);
-      c = II(c, d, a, b, m[i+14], 15, -1416354905);
-      b = II(b, c, d, a, m[i+ 5], 21, -57434055);
-      a = II(a, b, c, d, m[i+12],  6,  1700485571);
-      d = II(d, a, b, c, m[i+ 3], 10, -1894986606);
-      c = II(c, d, a, b, m[i+10], 15, -1051523);
-      b = II(b, c, d, a, m[i+ 1], 21, -2054922799);
-      a = II(a, b, c, d, m[i+ 8],  6,  1873313359);
-      d = II(d, a, b, c, m[i+15], 10, -30611744);
-      c = II(c, d, a, b, m[i+ 6], 15, -1560198380);
-      b = II(b, c, d, a, m[i+13], 21,  1309151649);
-      a = II(a, b, c, d, m[i+ 4],  6, -145523070);
-      d = II(d, a, b, c, m[i+11], 10, -1120210379);
-      c = II(c, d, a, b, m[i+ 2], 15,  718787259);
-      b = II(b, c, d, a, m[i+ 9], 21, -343485551);
-
-      a = (a + aa) >>> 0;
-      b = (b + bb) >>> 0;
-      c = (c + cc) >>> 0;
-      d = (d + dd) >>> 0;
-    }
-
-    return crypt.endian([a, b, c, d]);
-  };
-
-  // Auxiliary functions
-  md5._ff  = function (a, b, c, d, x, s, t) {
-    var n = a + (b & c | ~b & d) + (x >>> 0) + t;
-    return ((n << s) | (n >>> (32 - s))) + b;
-  };
-  md5._gg  = function (a, b, c, d, x, s, t) {
-    var n = a + (b & d | c & ~d) + (x >>> 0) + t;
-    return ((n << s) | (n >>> (32 - s))) + b;
-  };
-  md5._hh  = function (a, b, c, d, x, s, t) {
-    var n = a + (b ^ c ^ d) + (x >>> 0) + t;
-    return ((n << s) | (n >>> (32 - s))) + b;
-  };
-  md5._ii  = function (a, b, c, d, x, s, t) {
-    var n = a + (c ^ (b | ~d)) + (x >>> 0) + t;
-    return ((n << s) | (n >>> (32 - s))) + b;
-  };
-
-  // Package private blocksize
-  md5._blocksize = 16;
-  md5._digestsize = 16;
-
-  module.exports = function (message, options) {
-    if (message === undefined || message === null)
-      throw new Error('Illegal argument ' + message);
-
-    var digestbytes = crypt.wordsToBytes(md5(message, options));
-    return options && options.asBytes ? digestbytes :
-        options && options.asString ? bin.bytesToString(digestbytes) :
-        crypt.bytesToHex(digestbytes);
-  };
-
-})();
-
-
-/***/ }),
-/* 20 */
+/* 11 */
 /***/ (function(module, exports) {
 
 (function() {
@@ -1284,7 +1273,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
 
 
 /***/ }),
-/* 21 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /*!
@@ -1311,19 +1300,398 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 22 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _extends=Object.assign||function(target){for(var i=1;i<arguments.length;i++){var source=arguments[i];for(var key in source){if(Object.prototype.hasOwnProperty.call(source,key)){target[key]=source[key];}}}return target;};var _class,_temp,_initialiseProps;exports.default=creator;var _immutable=__webpack_require__(23);var _mkMetaEngine=__webpack_require__(1);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _data=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var reducer=(_temp=_class=function reducer(option){_classCallCheck(this,reducer);_initialiseProps.call(this);this.metaReducer=option.metaReducer;},_initialiseProps=function _initialiseProps(){var _this=this;this.init=function(state,option){var s=(0,_data.getInitState)();s.data.form=_extends({},s.data.form,option);return _this.metaReducer.init(state,s);};},_temp);function creator(option){var metaReducer=new _mkMetaEngine.reducer(option),o=new reducer(_extends({},option,{metaReducer:metaReducer}));return _extends({},metaReducer,o);}module.exports=exports['default'];
+module.exports = __webpack_require__.p + "logo.png";
 
 /***/ }),
-/* 23 */
-/***/ (function(module, exports) {
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__23__;
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 15 */,
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./package.json
+var package_0 = __webpack_require__(5);
+
+// CONCATENATED MODULE: ./view.js
+/* harmony default export */ var view = ({
+  component: 'div',
+  className: 'zlj-sign-in',
+  autoComplete: 'off',
+  children: [{
+    className: 'zlj-sign-in-header',
+    component: 'div',
+    children: [{
+      component: 'img',
+      className: 'zlj-sign-in-header-logo',
+      src: 'logo.png'
+    }, '系统']
+  }, {
+    className: 'zlj-sign-in-content',
+    component: 'div',
+    children: [{
+      component: 'antd.Form',
+      className: 'zlj-sign-in-content-form',
+      children: [{
+        component: 'antd.Form.Item',
+        className: 'zlj-sign-in-content-form-title',
+        style: {
+          fontSize: 30
+        },
+        children: '登录'
+      }, {
+        component: 'antd.Form.Item',
+        validateStatus: "{{data.other.error.user?'error':'success'}}",
+        help: '{{data.other.error.user}}',
+        className: 'zlj-sign-in-content-form-user',
+        children: [{
+          component: 'antd.Input',
+          placeholder: '请录入手机号',
+          onChange: "{{(e)=>$fieldChange('data.form.user', e.target.value)}}",
+          value: '{{data.form.user}}',
+          prefix: {
+            component: 'antd.Icon',
+            type: 'user'
+          }
+        }]
+      }, {
+        component: 'antd.Form.Item',
+        validateStatus: "{{data.other.error.password?'error':'success'}}",
+        help: '{{data.other.error.password}}',
+        className: 'zlj-sign-in-content-form-password',
+        children: [{
+          component: 'antd.Input',
+          placeholder: '请录入密码',
+          autoComplete: 'new-password',
+          type: 'password',
+          onChange: "{{(e)=>$fieldChange('data.form.password', e.target.value)}}",
+          value: '{{data.form.password}}',
+          prefix: {
+            component: 'antd.Icon',
+            type: 'lock'
+          }
+        }]
+      }, {
+        component: 'antd.Form.Item',
+        className: 'zlj-sign-in-content-form-forget',
+        children: [{
+          component: 'antd.Checkbox',
+          children: '记住我',
+          checked: '{{data.form.remember}}',
+          onChange: "{{(e)=>$base.setState({'data.form.remember':e.target.checked})}}"
+        }, {
+          component: 'a',
+          style: {
+            float: 'right'
+          },
+          onClick: "{{()=>$redirect('@zlj/forgot')}}",
+          children: '忘记密码'
+        }]
+      }, {
+        component: 'antd.Form.Item',
+        className: 'zlj-sign-in-content-form-login',
+        children: [{
+          component: 'antd.Button',
+          type: 'primary',
+          children: '登录',
+          onClick: '{{$login}}'
+        }]
+      }, {
+        component: 'antd.Form.Item',
+        className: 'zlj-sign-in-content-form-register',
+        children: [{
+          component: 'a',
+          style: {
+            float: 'right'
+          },
+          onClick: "{{()=>$redirect('@zlj/sign-up')}}",
+          children: '没有账户，立即注册'
+        }]
+      }]
+    }]
+  }, {
+    className: 'zlj-sign-in-footer',
+    component: 'div',
+    children: 'copyright © 2018 zlj'
+  }]
+});
+// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/regenerator/index.js
+var regenerator = __webpack_require__(2);
+var regenerator_default = /*#__PURE__*/__webpack_require__.n(regenerator);
+
+// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/asyncToGenerator.js
+var asyncToGenerator = __webpack_require__(3);
+var asyncToGenerator_default = /*#__PURE__*/__webpack_require__.n(asyncToGenerator);
+
+// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/classCallCheck.js
+var classCallCheck = __webpack_require__(6);
+var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
+
+// EXTERNAL MODULE: /usr/local/lib/node_modules/@makajs/cli/node_modules/@babel/runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__(0);
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+
+// EXTERNAL MODULE: external "maka"
+var external_maka_ = __webpack_require__(1);
+
+// EXTERNAL MODULE: ./node_modules/md5/md5.js
+var md5 = __webpack_require__(7);
+var md5_default = /*#__PURE__*/__webpack_require__.n(md5);
+
+// CONCATENATED MODULE: ./action.js
+
+
+
+
+
+var _dec, _class2;
+
+
+
+var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(_class2 = function action(option) {
+  var _this = this;
+
+  classCallCheck_default()(this, action);
+
+  defineProperty_default()(this, "onInit", function () {
+    var form = {
+      password: localStorage['login.password'] && Array(parseInt(localStorage['login.passwordLength']) + 1).join('*'),
+      user: localStorage['login.user'],
+      remember: localStorage['login.remember']
+    };
+
+    _this.base.setState({
+      'data.form': form
+    });
+  });
+
+  defineProperty_default()(this, "login",
+  /*#__PURE__*/
+  asyncToGenerator_default()(
+  /*#__PURE__*/
+  regenerator_default.a.mark(function _callee() {
+    var form, pwd, response, message;
+    return regenerator_default.a.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            form = _this.base.getState('data.form');
+
+            if (_this.checkUser(form.user)) {
+              _context.next = 3;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 3:
+            if (_this.checkPassword(form.password)) {
+              _context.next = 5;
+              break;
+            }
+
+            return _context.abrupt("return");
+
+          case 5:
+            pwd = form.password;
+            pwd = localStorage['login.password'] && pwd == Array(parseInt(localStorage['login.passwordLength']) + 1).join('*') ? localStorage['login.password'] : md5_default()(pwd);
+            _context.next = 9;
+            return external_maka_["fetch"].post('/v1/user/login', {
+              account: form.user,
+              password: pwd
+            });
+
+          case 9:
+            response = _context.sent;
+            message = Object(external_maka_["getComponent"])('antd.Message');
+            message && message.success('登录成功');
+
+            _this.base.context.set('currentUser', response);
+
+            localStorage['login.user'] = form.remember ? form.user : '';
+            localStorage['login.password'] = form.remember ? pwd : '';
+            localStorage['login.passwordLength'] = form.remember ? form.password.length : '';
+            localStorage['login.remember'] = form.remember ? true : '';
+
+            _this.redirect('@zlj/portal');
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  })));
+
+  defineProperty_default()(this, "redirect", function (appName) {
+    _this.base.component.props.onRedirect && _this.base.component.props.onRedirect(appName);
+  });
+
+  defineProperty_default()(this, "fieldChange",
+  /*#__PURE__*/
+  function () {
+    var _ref2 = asyncToGenerator_default()(
+    /*#__PURE__*/
+    regenerator_default.a.mark(function _callee2(fieldPath, value) {
+      return regenerator_default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _this.base.setState(defineProperty_default()({}, fieldPath, value));
+
+              if (fieldPath == 'data.form.user') {
+                _this.checkUser(value);
+              }
+
+              if (fieldPath == 'data.form.password') {
+                _this.checkPassword(value);
+              }
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    return function (_x, _x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }());
+
+  defineProperty_default()(this, "checkUser", function (user) {
+    var message = !user && '请录入手机号' || !/^1[3|4|5|8][0-9]\d{8}$/.test(user) && '请录入有效的手机号';
+
+    _this.base.setState({
+      'data.other.error.user': message
+    });
+
+    return !message;
+  });
+
+  defineProperty_default()(this, "checkPassword", function (password) {
+    var message = !password && '请录入密码';
+
+    _this.base.setState({
+      'data.other.error.password': message
+    });
+
+    return !message;
+  });
+
+  defineProperty_default()(this, "keyup", function (e) {
+    if (e.type === 'keyup' && (e.key === 'Enter' || e.keyCode == 13) && e.target.tagName != 'BUTTON') {
+      _this.login();
+    }
+  });
+
+  defineProperty_default()(this, "componentDidMount", function () {
+    var win = window;
+
+    if (win.addEventListener) {
+      win.addEventListener('keyup', _this.keyup, false);
+    } else if (win.attachEvent) {
+      win.attachEvent('onkeyup', _this.keyup);
+    } else {
+      win.onKeyUp = _this.keyup;
+    }
+  });
+
+  defineProperty_default()(this, "componentWillUnmount", function () {
+    var win = window;
+
+    if (win.removeEventListener) {
+      win.removeEventListener('keyup', _this.keyup, false);
+    } else if (win.detachEvent) {
+      win.detachEvent('onkeyup', _this.keyup);
+    } else {
+      win.onKeyUp = undefined;
+    }
+  });
+
+  Object.assign(this, option.mixins);
+}) || _class2);
+
+// CONCATENATED MODULE: ./state.js
+/* harmony default export */ var state = ({
+  data: {
+    form: {
+      user: '',
+      password: ''
+    },
+    other: {
+      error: {}
+    }
+  }
+});
+// CONCATENATED MODULE: ./mock.js
+
+var mockData = external_maka_["fetch"].mockData;
+
+function initMockData() {
+  if (!mockData.users) {
+    mockData.users = [{
+      id: 1,
+      account: 13334445556,
+      password: 'c4ca4238a0b923820dcc509a6f75849b',
+      name: 'zlj'
+    }];
+  }
+}
+
+external_maka_["fetch"].mock('/v1/user/login', function (option) {
+  initMockData();
+  var user = mockData.users.find(function (o) {
+    return o.account == option.account && o.password == option.password;
+  });
+
+  if (user) {
+    return {
+      result: true,
+      //token模拟简单处理，正式不应该有密码等数据
+      token: "".concat(user.id, ",").concat(user.account, ",").concat(user.password, ",").concat(user.name ? user.name : ''),
+      value: option
+    };
+  } else {
+    return {
+      result: false,
+      error: {
+        message: '请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）'
+      }
+    };
+  }
+});
+// EXTERNAL MODULE: ./img/logo.png
+var logo = __webpack_require__(13);
+
+// EXTERNAL MODULE: ./style.less
+var style = __webpack_require__(14);
+
+// CONCATENATED MODULE: ./index.js
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return index_name; });
+/* concated harmony reexport view */__webpack_require__.d(__webpack_exports__, "view", function() { return view; });
+/* concated harmony reexport state */__webpack_require__.d(__webpack_exports__, "state", function() { return state; });
+/* concated harmony reexport action */__webpack_require__.d(__webpack_exports__, "action", function() { return action_action; });
+
+
+
+
+
+
+
+var index_name = package_0.name;
+
 
 /***/ })
 /******/ ]);
 });
-//# sourceMappingURL=zlj-sign-in.js.map

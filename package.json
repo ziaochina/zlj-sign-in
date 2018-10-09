@@ -1,19 +1,10 @@
 {
   "isMKApp": true,
-  "name": "zlj-sign-in",
-  "description": "zlj-sign-in",
+  "name": "@zlj/sign-in",
+  "description": "sign in",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "",
-  "keywords": [
-    "mk",
-    "monkey king",
-    "react",
-    "redux",
-    "mk-js",
-    "mk-command",
-    "zlj-sign-in"
-  ],
+  "author": "liujian zhang",
   "repository": {
     "type": "git",
     "url": "https://github.com/ziaochina/zlj-sign-in.git"
@@ -23,12 +14,18 @@
   },
   "homepage": "https://github.com/ziaochina/zlj-sign-in#readme",
   "scripts": {
-    "start": "mk start",
-    "build": "mk build",
-    "pkg": "mk pkg"
+    "start": "maka start",
+    "dev": "maka start --dev",
+    "build": "maka build",
+    "pkg": "maka pkg"
   },
   "dependencies": {
-    "md5": "*",
-    "mk-command": "*"
-  }
+    "@zlj/antd": "https://hub.makajs.org/@zlj/antd/-/@latest",
+    "md5": "*"
+  },
+  "server": {
+    "proxy": null,
+    "port": 8000
+  },
+  "subAppDir": "./apps"
 }
