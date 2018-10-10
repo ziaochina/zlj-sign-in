@@ -213,7 +213,7 @@ module.exports = charenc;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMKApp":true,"name":"@zlj/sign-in","description":"sign in","version":"1.0.0","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"@zlj/antd":"https://hub.makajs.org/@zlj/antd/-/@latest","md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
+module.exports = {"isMakaApp":true,"name":"zlj-sign-in","description":"sign in","version":"1.0.0","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"md5":"*","zlj-antd":"http://hub.makajs.org/zlj-antd/-/@latest"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
 
 /***/ }),
 /* 6 */
