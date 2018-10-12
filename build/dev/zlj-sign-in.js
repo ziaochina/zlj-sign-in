@@ -213,7 +213,7 @@ module.exports = charenc;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"zlj-sign-in","description":"sign in","version":"1.0.0","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"md5":"*","zlj-antd":"http://hub.makajs.org/zlj-antd/-/@latest"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
+module.exports = {"isMakaApp":true,"name":"zlj-sign-in","description":"sign in","version":"1.0.1","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"zlj-antd":"https://hub.makajs.org/zlj-antd/-/@latest"},"devDependencies":{"md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
 
 /***/ }),
 /* 6 */
@@ -397,7 +397,7 @@ module.exports = _classCallCheck;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(16);
+module.exports = __webpack_require__(15);
 
 
 /***/ }),
@@ -1312,8 +1312,7 @@ module.exports = __webpack_require__.p + "logo.png";
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 15 */,
-/* 16 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1521,8 +1520,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(
             localStorage['login.password'] = form.remember ? pwd : '';
             localStorage['login.passwordLength'] = form.remember ? form.password.length : '';
             localStorage['login.remember'] = form.remember ? true : '';
-
-            _this.redirect('@zlj/portal');
+            external_maka_["navigate"].redirect('/zlj-portal');
 
           case 18:
           case "end":
@@ -1531,10 +1529,6 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(
       }
     }, _callee, this);
   })));
-
-  defineProperty_default()(this, "redirect", function (appName) {
-    _this.base.component.props.onRedirect && _this.base.component.props.onRedirect(appName);
-  });
 
   defineProperty_default()(this, "fieldChange",
   /*#__PURE__*/

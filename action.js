@@ -1,5 +1,5 @@
 
-import { actionMixin, fetch, getComponent } from 'maka'
+import { actionMixin, fetch, getComponent, navigate } from 'maka'
 import md5 from 'md5'
 
 @actionMixin('base')
@@ -39,11 +39,7 @@ export default class action {
         localStorage['login.passwordLength'] = form.remember ? form.password.length : ''
         localStorage['login.remember'] = form.remember ? true : ''
 
-        this.redirect('@zlj/portal')
-    }
-
-    redirect = (appName) => {
-        this.base.component.props.onRedirect && this.base.component.props.onRedirect(appName)
+        navigate.redirect('/zlj-portal')
     }
 
     fieldChange = async (fieldPath, value) => {
