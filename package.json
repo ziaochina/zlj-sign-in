@@ -2,7 +2,7 @@
   "isMakaApp": true,
   "name": "zlj-sign-in",
   "description": "sign in",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "liujian zhang",
   "repository": {
@@ -20,8 +20,10 @@
     "pkg": "maka pkg"
   },
   "dependencies": {
-    "md5": "*",
-    "zlj-antd": "http://hub.makajs.org/zlj-antd/-/@latest"
+    "zlj-antd": "https://hub.makajs.org/zlj-antd/-/@latest"
+  },
+  "devDependencies": {
+    "md5": "*"
   },
   "server": {
     "proxy": null,
