@@ -25,7 +25,7 @@ const view = {
 import {navigate} from 'maka'
 ...
 btnClick = () => {
-    navigate.redirect('zlj-sign-in')
+    navigate.redirect('/zlj-sign-in')
 }
 ...
 ```
