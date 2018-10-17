@@ -8,7 +8,8 @@ $ maka add zlj-sign-in
 ```
 
 2. Modify the code
-- *Embedded use*
+
+*Embedded use*
 ```javascript
 const view = {
     component: 'div',
@@ -18,7 +19,7 @@ const view = {
     }]
 }
 ```
-- *Navigate use*
+*Navigate use*
 ```javascript
 import {navigate} from 'maka'
 ...
