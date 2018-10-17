@@ -1,16 +1,14 @@
-## 简介
+Zlj-sign-in application, a simple example of login.
 
-zlj-sign-in 应用，登录的简单例子
+## Usage
 
-## 使用方法
-
-1. 增加依赖
+1. Add dependency
 ```bash
 $ maka add zlj-sign-in
 ```
 
-2. 修改代码
-- *嵌入使用*
+2. Modify the code
+- *Embedded use*
 ```javascript
 const view = {
     component: 'div',
@@ -20,7 +18,7 @@ const view = {
     }]
 }
 ```
-- *切换应用*
+- *Navigate use*
 ```javascript
 import {navigate} from 'maka'
 ...
@@ -30,17 +28,17 @@ btnClick = () => {
 ...
 ```
 
-## 下载运行
+## Download and run
 
-1. 下载
-2. 解压
-3. 进入解压目录
-4. 运行
+1. Download
+2. Decompress
+3. Enter decompress directory
+4. Run
 ```bash
 $ yarn start
 ```
 
-## 协议
+## License
 
 MIT
 

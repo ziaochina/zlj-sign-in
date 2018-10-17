@@ -213,7 +213,7 @@ module.exports = charenc;
 /* 5 */
 /***/ (function(module) {
 
-module.exports = {"isMakaApp":true,"name":"zlj-sign-in","description":"sign in","version":"1.0.2","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"zlj-antd":"https://hub.makajs.org/zlj-antd/-/@1.0.3"},"devDependencies":{"md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
+module.exports = {"isMakaApp":true,"name":"zlj-sign-in","description":"sign in","version":"1.0.3","license":"MIT","author":"liujian zhang","repository":{"type":"git","url":"https://github.com/ziaochina/zlj-sign-in.git"},"bugs":{"url":"https://github.com/ziaochina/zlj-sign-in/issues"},"homepage":"https://github.com/ziaochina/zlj-sign-in#readme","scripts":{"start":"maka start","dev":"maka start --dev","build":"maka build","pkg":"maka pkg"},"dependencies":{"zlj-antd":"https://hub.makajs.org/zlj-antd/-/@1.0.4"},"devDependencies":{"md5":"*"},"server":{"proxy":null,"port":8000},"subAppDir":"./apps"};
 
 /***/ }),
 /* 6 */
@@ -1333,7 +1333,7 @@ var package_0 = __webpack_require__(5);
       component: 'img',
       className: 'zlj-sign-in-header-logo',
       src: 'logo.png'
-    }, '系统']
+    }, 'Application']
   }, {
     className: 'zlj-sign-in-content',
     component: 'div',
@@ -1346,7 +1346,7 @@ var package_0 = __webpack_require__(5);
         style: {
           fontSize: 30
         },
-        children: '登录'
+        children: 'Sign in'
       }, {
         component: 'antd.Form.Item',
         validateStatus: "{{data.other.error.user?'error':'success'}}",
@@ -1354,7 +1354,7 @@ var package_0 = __webpack_require__(5);
         className: 'zlj-sign-in-content-form-user',
         children: [{
           component: 'antd.Input',
-          placeholder: '请录入手机号',
+          placeholder: 'Mobile',
           onChange: "{{(e)=>$fieldChange('data.form.user', e.target.value)}}",
           value: '{{data.form.user}}',
           prefix: {
@@ -1369,7 +1369,7 @@ var package_0 = __webpack_require__(5);
         className: 'zlj-sign-in-content-form-password',
         children: [{
           component: 'antd.Input',
-          placeholder: '请录入密码',
+          placeholder: 'Password',
           autoComplete: 'new-password',
           type: 'password',
           onChange: "{{(e)=>$fieldChange('data.form.password', e.target.value)}}",
@@ -1384,7 +1384,7 @@ var package_0 = __webpack_require__(5);
         className: 'zlj-sign-in-content-form-forget',
         children: [{
           component: 'antd.Checkbox',
-          children: '记住我',
+          children: 'Remember me',
           checked: '{{data.form.remember}}',
           onChange: "{{(e)=>$base.setState({'data.form.remember':e.target.checked})}}"
         }, {
@@ -1393,7 +1393,7 @@ var package_0 = __webpack_require__(5);
             float: 'right'
           },
           onClick: "{{()=>$redirect('@zlj/forgot')}}",
-          children: '忘记密码'
+          children: 'Forgot password'
         }]
       }, {
         component: 'antd.Form.Item',
@@ -1401,7 +1401,7 @@ var package_0 = __webpack_require__(5);
         children: [{
           component: 'antd.Button',
           type: 'primary',
-          children: '登录',
+          children: 'Sign in',
           onClick: '{{$login}}'
         }]
       }, {
@@ -1413,7 +1413,7 @@ var package_0 = __webpack_require__(5);
             float: 'right'
           },
           onClick: "{{()=>$redirect('@zlj/sign-up')}}",
-          children: '没有账户，立即注册'
+          children: 'Register now!'
         }]
       }]
     }]
@@ -1512,7 +1512,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(
           case 9:
             response = _context.sent;
             message = Object(external_maka_["getComponent"])('antd.Message');
-            message && message.success('登录成功');
+            message && message.success('sign in success');
 
             _this.base.context.set('currentUser', response);
 
@@ -1564,7 +1564,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(
   }());
 
   defineProperty_default()(this, "checkUser", function (user) {
-    var message = !user && '请录入手机号' || !/^1[3|4|5|8][0-9]\d{8}$/.test(user) && '请录入有效的手机号';
+    var message = !user && 'Please input your mobile!' || !/^1[3|4|5|8][0-9]\d{8}$/.test(user) && 'This is an invalid mobile number';
 
     _this.base.setState({
       'data.other.error.user': message
@@ -1574,7 +1574,7 @@ var action_action = (_dec = Object(external_maka_["actionMixin"])('base'), _dec(
   });
 
   defineProperty_default()(this, "checkPassword", function (password) {
-    var message = !password && '请录入密码';
+    var message = !password && 'Please input your password@';
 
     _this.base.setState({
       'data.other.error.password': message
@@ -1660,7 +1660,7 @@ external_maka_["fetch"].mock('/v1/user/login', function (option) {
     return {
       result: false,
       error: {
-        message: '请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）'
+        message: 'Incorrect username or password（default user:13334445556,password:1）'
       }
     };
   }

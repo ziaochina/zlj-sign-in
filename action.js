@@ -30,7 +30,7 @@ export default class action {
         const response = await fetch.post('/v1/user/login', { account: form.user, password: pwd })
         
         const message = getComponent('antd.Message')
-        message && message.success('登录成功')
+        message && message.success('sign in success')
 
         this.base.context.set('currentUser', response)
 
@@ -53,7 +53,7 @@ export default class action {
     }
 
     checkUser = (user) => {
-        var message = (!user && '请录入手机号') || (!/^1[3|4|5|8][0-9]\d{8}$/.test(user) && '请录入有效的手机号')
+        var message = (!user && 'Please input your mobile!') || (!/^1[3|4|5|8][0-9]\d{8}$/.test(user) && 'This is an invalid mobile number')
         this.base.setState({
             'data.other.error.user': message
         })
@@ -62,7 +62,7 @@ export default class action {
     }
 
     checkPassword = (password) => {
-        var message = !password && '请录入密码'
+        var message = !password && 'Please input your password@'
         this.base.setState({
             'data.other.error.password': message
         })

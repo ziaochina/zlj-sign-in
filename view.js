@@ -9,7 +9,7 @@ export default {
 			component: 'img',
 			className: 'zlj-sign-in-header-logo',
 			src: 'logo.png'
-		}, '系统']
+		}, 'Application']
 	}, {
 		className: 'zlj-sign-in-content',
 		component: 'div',
@@ -20,7 +20,7 @@ export default {
 				component: 'antd.Form.Item',
 				className: 'zlj-sign-in-content-form-title',
 				style: { fontSize: 30 },
-				children: '登录'
+				children: 'Sign in'
 			}, {
 				component: 'antd.Form.Item',
 				validateStatus: "{{data.other.error.user?'error':'success'}}",
@@ -28,7 +28,7 @@ export default {
 				className: 'zlj-sign-in-content-form-user',
 				children: [{
 					component: 'antd.Input',
-					placeholder: '请录入手机号',
+					placeholder: 'Mobile',
 					onChange: "{{(e)=>$fieldChange('data.form.user', e.target.value)}}",
 					value: '{{data.form.user}}',
 					prefix: {
@@ -43,7 +43,7 @@ export default {
 				className: 'zlj-sign-in-content-form-password',
 				children: [{
 					component: 'antd.Input',
-					placeholder: '请录入密码',
+					placeholder: 'Password',
 					autoComplete: 'new-password',
 					type: 'password',
 					onChange: `{{(e)=>$fieldChange('data.form.password', e.target.value)}}`,
@@ -58,14 +58,14 @@ export default {
 				className: 'zlj-sign-in-content-form-forget',
 				children: [{
 					component: 'antd.Checkbox',
-					children: '记住我',
+					children: 'Remember me',
 					checked: '{{data.form.remember}}',
 					onChange: `{{(e)=>$base.setState({'data.form.remember':e.target.checked})}}`
 				}, {
 					component: 'a',
 					style: { float: 'right' },
 					onClick: `{{()=>$redirect('@zlj/forgot')}}`,
-					children: '忘记密码'
+					children: 'Forgot password'
 				}]
 			}, {
 				component: 'antd.Form.Item',
@@ -73,7 +73,7 @@ export default {
 				children: [{
 					component: 'antd.Button',
 					type: 'primary',
-					children: '登录',
+					children: 'Sign in',
 					onClick: '{{$login}}'
 				}]
 			}, {
@@ -83,7 +83,7 @@ export default {
 					component: 'a',
 					style: { float: 'right' },
 					onClick: `{{()=>$redirect('@zlj/sign-up')}}`,
-					children: '没有账户，立即注册'
+					children: 'Register now!'
 				}]
 			}]
 		}]

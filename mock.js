@@ -27,6 +27,6 @@ fetch.mock('/v1/user/login', (option) => {
         }
     }
     else {
-        return { result: false, error: { message: '请输入正确的用户名密码（系统内置用户user:13334445556,pwd:1）' } }
+        return { result: false, error: { message: 'Incorrect username or password（default user:13334445556,password:1）' } }
     }
 })
