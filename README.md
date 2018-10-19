@@ -1,4 +1,4 @@
-Zlj-sign-in application, a simple example of login.
+zlj-sign-in application, a simple example of login.
 
 ## Usage
 

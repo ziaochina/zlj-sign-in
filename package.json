@@ -1,8 +1,8 @@
 {
   "isMakaApp": true,
   "name": "zlj-sign-in",
-  "description": "sign in",
-  "version": "1.0.5",
+  "description": "zlj-sign-in application, a simple example of login.",
+  "version": "1.0.6",
   "license": "MIT",
   "author": "liujian zhang",
   "repository": {
